@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		422660F61BDB205F00EE670D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422660F51BDB205F00EE670D /* AppDelegate.swift */; };
+		422660F81BDB205F00EE670D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422660F71BDB205F00EE670D /* ViewController.swift */; };
+		422660FB1BDB205F00EE670D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422660F91BDB205F00EE670D /* Main.storyboard */; };
+		422660FD1BDB205F00EE670D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 422660FC1BDB205F00EE670D /* Assets.xcassets */; };
+		422661001BDB205F00EE670D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422660FE1BDB205F00EE670D /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		422660F21BDB205F00EE670D /* MellonDoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MellonDoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		422660F51BDB205F00EE670D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		422660F71BDB205F00EE670D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		422660FA1BDB205F00EE670D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		422660FC1BDB205F00EE670D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		422660FF1BDB205F00EE670D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		422661011BDB205F00EE670D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		422660EF1BDB205F00EE670D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		422660E91BDB205F00EE670D = {
+			isa = PBXGroup;
+			children = (
+				422660F41BDB205F00EE670D /* MellonDoku */,
+				422660F31BDB205F00EE670D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		422660F31BDB205F00EE670D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				422660F21BDB205F00EE670D /* MellonDoku.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		422660F41BDB205F00EE670D /* MellonDoku */ = {
+			isa = PBXGroup;
+			children = (
+				422660F51BDB205F00EE670D /* AppDelegate.swift */,
+				422660F71BDB205F00EE670D /* ViewController.swift */,
+				422660F91BDB205F00EE670D /* Main.storyboard */,
+				422660FC1BDB205F00EE670D /* Assets.xcassets */,
+				422660FE1BDB205F00EE670D /* LaunchScreen.storyboard */,
+				422661011BDB205F00EE670D /* Info.plist */,
+			);
+			path = MellonDoku;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		422660F11BDB205F00EE670D /* MellonDoku */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 422661041BDB205F00EE670D /* Build configuration list for PBXNativeTarget "MellonDoku" */;
+			buildPhases = (
+				422660EE1BDB205F00EE670D /* Sources */,
+				422660EF1BDB205F00EE670D /* Frameworks */,
+				422660F01BDB205F00EE670D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MellonDoku;
+			productName = MellonDoku;
+			productReference = 422660F21BDB205F00EE670D /* MellonDoku.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		422660EA1BDB205F00EE670D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Gihyuk Ko";
+				TargetAttributes = {
+					422660F11BDB205F00EE670D = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = 422660ED1BDB205F00EE670D /* Build configuration list for PBXProject "MellonDoku" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 422660E91BDB205F00EE670D;
+			productRefGroup = 422660F31BDB205F00EE670D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				422660F11BDB205F00EE670D /* MellonDoku */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		422660F01BDB205F00EE670D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				422661001BDB205F00EE670D /* LaunchScreen.storyboard in Resources */,
+				422660FD1BDB205F00EE670D /* Assets.xcassets in Resources */,
+				422660FB1BDB205F00EE670D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		422660EE1BDB205F00EE670D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				422660F81BDB205F00EE670D /* ViewController.swift in Sources */,
+				422660F61BDB205F00EE670D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		422660F91BDB205F00EE670D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				422660FA1BDB205F00EE670D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		422660FE1BDB205F00EE670D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				422660FF1BDB205F00EE670D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		422661021BDB205F00EE670D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		422661031BDB205F00EE670D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		422661051BDB205F00EE670D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MellonDoku/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GH.MellonDoku;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		422661061BDB205F00EE670D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MellonDoku/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GH.MellonDoku;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		422660ED1BDB205F00EE670D /* Build configuration list for PBXProject "MellonDoku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422661021BDB205F00EE670D /* Debug */,
+				422661031BDB205F00EE670D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		422661041BDB205F00EE670D /* Build configuration list for PBXNativeTarget "MellonDoku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422661051BDB205F00EE670D /* Debug */,
+				422661061BDB205F00EE670D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 422660EA1BDB205F00EE670D /* Project object */;
+}
