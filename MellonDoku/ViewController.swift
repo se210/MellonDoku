@@ -8,18 +8,48 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+// Start Screen View Controller Class
+class StartScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
 
 }
 
+// Game Setup View Controller Class
+class GameSetupViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBAction func EasyDifficulty(sender: AnyObject) {
+    }
+    @IBAction func MediumDifficulty(sender: AnyObject) {
+    }
+    @IBAction func HardDifficulty(sender: AnyObject) {
+    }
+    
+    
+}
+
+// Game View Controller Class
+class GameViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+}
