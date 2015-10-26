@@ -5,6 +5,29 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="fDj-zM-ji6">
+            <objects>
+                <navigationController id="yBM-Vn-xTC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eN9-gW-cZ9"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="toW-CK-JKL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="NIZ-nd-BjC">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="doM-Ra-jDu" kind="relationship" relationship="rootViewController" id="dAB-aP-i4w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nz0-ku-0cp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="355" y="-267"/>
+        </scene>
         <!--Start Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -22,23 +45,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wL4-gF-fcw">
-                                <rect key="frame" x="118" y="397" width="84" height="56"/>
+                                <rect key="frame" x="118" y="396" width="84" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="doM-Ra-jDu" kind="modal" id="ntf-VL-a5Y"/>
+                                    <segue destination="yBM-Vn-xTC" kind="modal" id="Dfr-Yl-qr3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ETG-Qz-f91"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192" y="354"/>
+            <point key="canvasLocation" x="-87" y="-267"/>
         </scene>
         <!--Game Setup View Controller-->
         <scene sceneID="YC1-pb-S9f">
@@ -56,36 +80,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l06-GH-aqd">
-                                <rect key="frame" x="133" y="195" width="54" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Easy"/>
-                                <connections>
-                                    <action selector="EasyDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="X3U-NH-9wf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qdQ-ZI-FcB">
-                                <rect key="frame" x="117" y="267" width="87" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Medium"/>
-                                <connections>
-                                    <action selector="MediumDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="2PO-OX-mYH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K7s-EJ-YKT">
-                                <rect key="frame" x="117" y="338" width="87" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Hard"/>
-                                <connections>
-                                    <action selector="HardDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="i66-Tr-9LD"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You selected Easy difficulty!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hgn-cS-CSV">
                                 <rect key="frame" x="42" y="481" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -100,20 +94,51 @@
                                 <animations/>
                                 <state key="normal" title="Play!"/>
                                 <connections>
-                                    <segue destination="lez-iP-Ozv" kind="modal" id="g2G-Uc-ZgJ"/>
+                                    <segue destination="lez-iP-Ozv" kind="push" id="g2G-Uc-ZgJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8BL-i7-Pcm">
+                                <rect key="frame" x="108" y="252" width="105" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Medium"/>
+                                <connections>
+                                    <action selector="mediumDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="tin-Lw-xlR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="olk-g2-XB3">
+                                <rect key="frame" x="108" y="317" width="105" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Hard"/>
+                                <connections>
+                                    <action selector="hardDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="50C-bW-rKN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="48X-Jz-iZJ">
+                                <rect key="frame" x="108" y="183" width="105" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Easy"/>
+                                <connections>
+                                    <action selector="easyDifficulty:" destination="doM-Ra-jDu" eventType="touchUpInside" id="NMy-Ik-fKP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="9jk-Wr-KiE"/>
                     <connections>
-                        <outlet property="HardDifficulty" destination="K7s-EJ-YKT" id="Jvm-4v-goN"/>
+                        <outlet property="diffString" destination="hgn-cS-CSV" id="zY2-5z-OPd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wf1-3g-YwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="354"/>
+            <point key="canvasLocation" x="794" y="-267"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="oy1-re-fgZ">
@@ -775,10 +800,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="i1b-eN-IOh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dgv-0d-FOk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097" y="354"/>
+            <point key="canvasLocation" x="1227" y="-267"/>
         </scene>
     </scenes>
 </document>

@@ -26,18 +26,35 @@ class GameSetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     
-    @IBAction func EasyDifficulty(sender: AnyObject) {
-    }
-    @IBAction func MediumDifficulty(sender: AnyObject) {
-    }
-    @IBAction func HardDifficulty(sender: AnyObject) {
+    @IBAction func easyDifficulty(sender: AnyObject) {
+        diffString.text = "You selected Easy difficulty!"
     }
     
+    @IBAction func mediumDifficulty(sender: AnyObject) {
+        diffString.text = "You selected Medium difficulty!"
+    }
+    
+    @IBAction func hardDifficulty(sender: AnyObject) {
+        diffString.text = "You selected Hard difficulty"
+    }
+    
+    @IBOutlet weak var diffString: UILabel!
     
 }
 
