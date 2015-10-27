@@ -59,6 +59,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ETG-Qz-f91"/>
+                    <connections>
+                        <outlet property="startButton" destination="wL4-gF-fcw" id="UCM-j5-6Uq"/>
+                        <outlet property="titleLabel" destination="Jov-1i-0P3" id="6Yz-TP-XWp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,8 +84,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You selected Easy difficulty!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hgn-cS-CSV">
-                                <rect key="frame" x="42" y="481" width="215" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You selected Easy difficulty!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hgn-cS-CSV">
+                                <rect key="frame" x="20" y="481" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -134,6 +138,11 @@
                     <navigationItem key="navigationItem" id="9jk-Wr-KiE"/>
                     <connections>
                         <outlet property="diffString" destination="hgn-cS-CSV" id="zY2-5z-OPd"/>
+                        <outlet property="diffTitle" destination="svO-tA-Wqn" id="R7V-ea-SY4"/>
+                        <outlet property="easyButton" destination="48X-Jz-iZJ" id="MDx-EJ-oH6"/>
+                        <outlet property="hardButton" destination="olk-g2-XB3" id="fwq-3d-kVa"/>
+                        <outlet property="mediumButton" destination="8BL-i7-Pcm" id="myN-dw-PTA"/>
+                        <outlet property="playButton" destination="2Kw-Wi-xyx" id="6eS-X4-FUS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wf1-3g-YwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,14 +157,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7pS-kc-1gh">
-                                <rect key="frame" x="15" y="130" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ilz-Ab-3nu">
                                 <rect key="frame" x="15" y="190" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -796,15 +797,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="melon1" id="7DM-cI-1yc">
+                                <rect key="frame" x="15" y="130" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="i1b-eN-IOh"/>
+                    <connections>
+                        <outlet property="Imageview1" destination="7DM-cI-1yc" id="7aP-AW-jeq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dgv-0d-FOk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1227" y="-267"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="melon1" width="200" height="200"/>
+    </resources>
 </document>

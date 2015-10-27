@@ -11,8 +11,17 @@ import UIKit
 // Start Screen View Controller Class
 class StartScreenViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let screenBounds = UIScreen.mainScreen().bounds
+        titleLabel.sizeToFit()
+        titleLabel.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.20)
+        startButton.sizeToFit()
+        startButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.80)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,8 +34,22 @@ class GameSetupViewController: UIViewController {
     
     var diff: String = "Easy"
     
+    @IBOutlet weak var diffTitle: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var easyButton: UIButton!
+    @IBOutlet weak var mediumButton: UIButton!
+    @IBOutlet weak var hardButton: UIButton!
+    
+    let screenBounds = UIScreen.mainScreen().bounds
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        diffTitle.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.20)
+        playButton.center = CGPoint(x: CGRectGetMaxX(screenBounds) * 0.75, y: CGRectGetMaxY(screenBounds) * 0.85)
+        diffString.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.80)
+        easyButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.40)
+        mediumButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.50)
+        hardButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.60)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,9 +90,9 @@ class GameSetupViewController: UIViewController {
 class GameViewController: GameSetupViewController {
     
     var sudoku: SudokuGen!
+    @IBOutlet weak var Imageview1: UIImageView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         sudoku = SudokuGen(difficulty: super.diff)
         self.printSudoku(sudoku.puzzle)
     }
@@ -81,6 +104,7 @@ class GameViewController: GameSetupViewController {
     func printSudoku(puzzle: [[Int]]) {
         // todo
         // print sudoku
+        let screenBounds = UIScreen.mainScreen().bounds
     }
     
     func checkSolved(puzzle: [[Int]]) {
