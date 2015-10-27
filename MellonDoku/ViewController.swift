@@ -23,6 +23,8 @@ class StartScreenViewController: UIViewController {
 // Game Setup View Controller Class
 class GameSetupViewController: UIViewController {
     
+    var diff: String = "Easy"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -59,14 +61,31 @@ class GameSetupViewController: UIViewController {
 }
 
 // Game View Controller Class
-class GameViewController: UIViewController {
+class GameViewController: GameSetupViewController {
+    
+    var sudoku: SudokuGen!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sudoku = SudokuGen(super.diff)
+        self.printSudoku(sudoku.puzzle)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func printSudoku(puzzle: [[Int]]) {
+        // todo
+    }
+    
+    func checkSolved(puzzle: [[Int]]) {
+        // todo
+    }
+    
+    func userInput() {
+        // todo
+        checkSolved(sudoku.puzzle)
     }
     
 }
