@@ -46,14 +46,17 @@ class GameSetupViewController: UIViewController {
     
     @IBAction func easyDifficulty(sender: AnyObject) {
         diffString.text = "You selected Easy difficulty!"
+        self.diff = "Easy"
     }
     
     @IBAction func mediumDifficulty(sender: AnyObject) {
         diffString.text = "You selected Medium difficulty!"
+        self.diff = "Medium"
     }
     
     @IBAction func hardDifficulty(sender: AnyObject) {
         diffString.text = "You selected Hard difficulty"
+        self.diff = "Hard"
     }
     
     @IBOutlet weak var diffString: UILabel!
@@ -67,7 +70,7 @@ class GameViewController: GameSetupViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sudoku = SudokuGen(super.diff)
+        sudoku = SudokuGen(difficulty: super.diff)
         self.printSudoku(sudoku.puzzle)
     }
     
@@ -77,14 +80,19 @@ class GameViewController: GameSetupViewController {
     
     func printSudoku(puzzle: [[Int]]) {
         // todo
+        // print sudoku
     }
     
     func checkSolved(puzzle: [[Int]]) {
         // todo
+        if (puzzle == sudoku.solution) {
+            // congratulations!
+        }
     }
     
     func userInput() {
         // todo
+        // get user input
         checkSolved(sudoku.puzzle)
     }
     
