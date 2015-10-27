@@ -21,7 +21,6 @@ class StartScreenViewController: UIViewController {
         titleLabel.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.20)
         startButton.sizeToFit()
         startButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.80)
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,16 +39,16 @@ class GameSetupViewController: UIViewController {
     @IBOutlet weak var mediumButton: UIButton!
     @IBOutlet weak var hardButton: UIButton!
     
-    let screenBounds = UIScreen.mainScreen().bounds
+    let screenBound = UIScreen.mainScreen().bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        diffTitle.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.20)
-        playButton.center = CGPoint(x: CGRectGetMaxX(screenBounds) * 0.75, y: CGRectGetMaxY(screenBounds) * 0.85)
-        diffString.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.80)
-        easyButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.40)
-        mediumButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.50)
-        hardButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.60)
+        diffTitle.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.20)
+        playButton.center = CGPoint(x: CGRectGetMaxX(screenBound) * 0.75, y: CGRectGetMaxY(screenBound) * 0.85)
+        diffString.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.80)
+        easyButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.40)
+        mediumButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.50)
+        hardButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.60)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,11 +89,54 @@ class GameSetupViewController: UIViewController {
 class GameViewController: GameSetupViewController {
     
     var sudoku: SudokuGen!
-    @IBOutlet weak var Imageview1: UIImageView!
     
     override func viewDidLoad() {
+        // draw puzzle frame
+        let framepath = CGPathCreateMutable()
+        let puzzleframe = CAShapeLayer()
+        
+        let initial = (x: CGRectGetMaxX(screenBound) * 0.05,
+                       y: (CGRectGetMaxY(screenBound) - CGRectGetMaxX(screenBound)) * 0.6)
+        let final = (x: CGRectGetMaxX(screenBound) * 0.95,
+                     y: (CGRectGetMaxY(screenBound) - CGRectGetMaxX(screenBound)) * 0.6 + CGRectGetMaxX(screenBound) * 0.9)
+        let divide1 = (x: CGRectGetMaxX(screenBound) * 0.35,
+                       y: (CGRectGetMaxY(screenBound) - CGRectGetMaxX(screenBound))*0.6 + CGRectGetMaxX(screenBound) * 0.3)
+        let divide2 = (x: CGRectGetMaxX(screenBound) * 0.65,
+                       y: (CGRectGetMaxY(screenBound) - CGRectGetMaxX(screenBound)) * 0.6 + CGRectGetMaxX(screenBound) * 0.6)
+        
+        CGPathMoveToPoint(framepath, nil, initial.x, initial.y)
+        CGPathAddLineToPoint(framepath, nil, final.x, initial.y)
+        CGPathAddLineToPoint(framepath, nil, final.x, final.y)
+        CGPathAddLineToPoint(framepath, nil, initial.x, final.y)
+        CGPathAddLineToPoint(framepath, nil, initial.x, initial.y)
+        CGPathMoveToPoint(framepath, nil, initial.x, divide1.y)
+        CGPathAddLineToPoint(framepath, nil, final.x, divide1.y)
+        CGPathMoveToPoint(framepath, nil, divide1.x, initial.y)
+        CGPathAddLineToPoint(framepath, nil, divide1.x, final.y)
+        CGPathMoveToPoint(framepath, nil, divide2.x, initial.y)
+        CGPathAddLineToPoint(framepath, nil, divide2.x, final.y)
+        CGPathMoveToPoint(framepath, nil, initial.x, divide2.y)
+        CGPathAddLineToPoint(framepath, nil, final.x, divide2.y)
+        
+        puzzleframe.path = framepath
+        puzzleframe.lineWidth = 2.0
+        puzzleframe.strokeColor = UIColor.blackColor().CGColor
+        puzzleframe.fillColor = UIColor.clearColor().CGColor
+        self.view.layer.addSublayer(puzzleframe)
+        
+        // generate sudoku
         sudoku = SudokuGen(difficulty: super.diff)
+        
+        // print sudoku
         self.printSudoku(sudoku.puzzle)
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // do nothing
+    }
+    override func viewWillDisappear(animated: Bool) {
+        // do nothing
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,7 +146,6 @@ class GameViewController: GameSetupViewController {
     func printSudoku(puzzle: [[Int]]) {
         // todo
         // print sudoku
-        let screenBounds = UIScreen.mainScreen().bounds
     }
     
     func checkSolved(puzzle: [[Int]]) {
