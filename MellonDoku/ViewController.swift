@@ -28,10 +28,10 @@ class StartScreenViewController: UIViewController {
 
 }
 
+var diff: String!
+
 // Game Setup View Controller Class
 class GameSetupViewController: UIViewController {
-    
-    var diff: String = "Easy"
     
     @IBOutlet weak var diffTitle: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -39,16 +39,16 @@ class GameSetupViewController: UIViewController {
     @IBOutlet weak var mediumButton: UIButton!
     @IBOutlet weak var hardButton: UIButton!
     
-    let screenBound = UIScreen.mainScreen().bounds
+    let screenBounds = UIScreen.mainScreen().bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        diffTitle.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.20)
-        playButton.center = CGPoint(x: CGRectGetMaxX(screenBound) * 0.75, y: CGRectGetMaxY(screenBound) * 0.85)
-        diffString.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.80)
-        easyButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.40)
-        mediumButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.50)
-        hardButton.center = CGPoint(x: CGRectGetMidX(screenBound), y: CGRectGetMaxY(screenBound) * 0.60)
+        diffTitle.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.20)
+        playButton.center = CGPoint(x: CGRectGetMaxX(screenBounds) * 0.75, y: CGRectGetMaxY(screenBounds) * 0.85)
+        diffString.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.80)
+        easyButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.40)
+        mediumButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.50)
+        hardButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.60)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,17 +68,17 @@ class GameSetupViewController: UIViewController {
     
     @IBAction func easyDifficulty(sender: AnyObject) {
         diffString.text = "You selected Easy difficulty!"
-        self.diff = "Easy"
+        diff = "Easy"
     }
     
     @IBAction func mediumDifficulty(sender: AnyObject) {
         diffString.text = "You selected Medium difficulty!"
-        self.diff = "Medium"
+        diff = "Medium"
     }
     
     @IBAction func hardDifficulty(sender: AnyObject) {
         diffString.text = "You selected Hard difficulty"
-        self.diff = "Hard"
+        diff = "Hard"
     }
     
     @IBOutlet weak var diffString: UILabel!
@@ -86,28 +86,30 @@ class GameSetupViewController: UIViewController {
 }
 
 // Game View Controller Class
-class GameViewController: GameSetupViewController {
+class GameViewController: UIViewController {
     
     var sudoku: SudokuGen!
     var numbers: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         // draw puzzle frame
-        
+        let screenBounds = UIScreen.mainScreen().bounds
+
         let navibar = self.navigationController!.navigationBar.frame.size.height
         let framepath = CGPathCreateMutable()
         let puzzleframe = CAShapeLayer()
         
-        let puzzlesize = CGRectGetMaxX(screenBound) * 0.9
-        let initial = (x: CGRectGetMaxX(screenBound) * 0.05,
-                       y: 0.5 * navibar + (CGRectGetMaxY(screenBound) - puzzlesize) * 0.5)
-        let final = (x: CGRectGetMaxX(screenBound) * 0.95,
-                     y: 0.5 * navibar + (CGRectGetMaxY(screenBound) - puzzlesize) * 0.5 + puzzlesize)
-        let divide1 = (x: CGRectGetMaxX(screenBound) * 0.35,
-                       y: 0.5 * navibar + (CGRectGetMaxY(screenBound) - puzzlesize) * 0.5 + puzzlesize/3)
-        let divide2 = (x: CGRectGetMaxX(screenBound) * 0.65,
-                       y: 0.5 * navibar + (CGRectGetMaxY(screenBound) - puzzlesize) * 0.5 + 2 * puzzlesize/3)
+        let puzzlesize = CGRectGetMaxX(screenBounds) * 0.9
+        let initial = (x: CGRectGetMaxX(screenBounds) * 0.05,
+                       y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5)
+        let final = (x: CGRectGetMaxX(screenBounds) * 0.95,
+                     y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5 + puzzlesize)
+        let divide1 = (x: CGRectGetMaxX(screenBounds) * 0.35,
+                       y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5 + puzzlesize/3)
+        let divide2 = (x: CGRectGetMaxX(screenBounds) * 0.65,
+                       y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5 + 2 * puzzlesize/3)
         
         CGPathMoveToPoint(framepath, nil, initial.x, initial.y)
         CGPathAddLineToPoint(framepath, nil, final.x, initial.y)
@@ -125,13 +127,6 @@ class GameViewController: GameSetupViewController {
         
         let buttonmargin: CGFloat = 3.0
         let buttonsize = puzzlesize / 9 - 2 * buttonmargin
-        /*
-        let button = UIButton(type: UIButtonType.Custom) as UIButton
-        button.frame = CGRectMake(initial.x + buttonmargin, initial.y + buttonmargin, buttonsize, buttonsize)
-        button.setBackgroundImage(UIImage(named: "melon1"), forState: UIControlState.Normal)
-        button.addTarget(self, action: "userInput", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(button)*/
         
         // generate buttons for the sudoku
         for i in 0...8 {
@@ -139,11 +134,9 @@ class GameViewController: GameSetupViewController {
                 if (i != 0 || j != 0) {
                     numbers.append(UIButton(type: UIButtonType.Custom) as UIButton)
                 }
-                numbers[9*i+j].frame = CGRectMake(initial.x + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
-                                                  initial.y + buttonmargin + CGFloat(j) * (buttonsize + 2 * buttonmargin),
+                numbers[9*i+j].frame = CGRectMake(initial.x + buttonmargin + CGFloat(j) * (buttonsize + 2 * buttonmargin),
+                                                  initial.y + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
                                                   buttonsize, buttonsize)
-                //numbers[9*i+j].backgroundColor = UIColor.greenColor()
-                //numbers[9*i+j].addTarget(self, action: "userInput", forControlEvents: UIControlEvents.TouchUpInside)
                 self.view.addSubview(numbers[9*i+j])
             }
         }
@@ -155,18 +148,11 @@ class GameViewController: GameSetupViewController {
         self.view.layer.addSublayer(puzzleframe)
         
         // generate sudoku
-        sudoku = SudokuGen(difficulty: super.diff)
+        sudoku = SudokuGen(difficulty: diff)
         
         // print sudoku
         self.printSudoku(sudoku.puzzle)
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        // do nothing
-    }
-    override func viewWillDisappear(animated: Bool) {
-        // do nothing
     }
     
     override func didReceiveMemoryWarning() {
@@ -180,9 +166,10 @@ class GameViewController: GameSetupViewController {
                 if (puzzle[i][j] != 0) {
                     let image: String = "melon" + String(puzzle[i][j])
                     numbers[9*i+j].setBackgroundImage(UIImage(named: image), forState: UIControlState.Normal)
-                    numbers[9*i+j].backgroundColor = UIColor.grayColor()
+                    // numbers[9*i+j].backgroundColor = UIColor.grayColor()
                 }
                 else {
+                    // add actions for numbers not yet completed
                     numbers[9*i+j].addTarget(self, action: "userInput", forControlEvents: UIControlEvents.TouchUpInside)
                 }
             }
@@ -199,7 +186,6 @@ class GameViewController: GameSetupViewController {
     func userInput() {
         // todo
         // get user input
-        checkSolved(sudoku.puzzle)
     }
     
 }

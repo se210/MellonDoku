@@ -15,8 +15,8 @@ class SudokuGen {
     
     init(difficulty: String) {
         self.difficulty = difficulty
-        self.puzzle = genSudoku(difficulty).puzzle
-        self.solution = genSudoku(difficulty).solution
+        self.puzzle = genSudoku(self.difficulty).puzzle
+        self.solution = genSudoku(self.difficulty).solution
     }
     
     func genSudoku(diff: String) -> (puzzle: [[Int]], solution:[[Int]]) {
