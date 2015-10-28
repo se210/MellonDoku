@@ -88,10 +88,10 @@ class GameSetupViewController: UIViewController {
 // Game View Controller Class
 class GameViewController: UIViewController {
     
-    var sudoku: SudokuGen!
-    var numbers: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]
-    var inputs: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]
-    var currentButton: Int = -1
+    var sudoku: SudokuGen!  // sudoku
+    var numbers: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton] // buttons for the sudoku
+    var inputs: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]  // buttons for the user input
+    var currentButton: Int = -1 // status indicator for the user input
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,12 +149,13 @@ class GameViewController: UIViewController {
                 inputs.append(UIButton(type: UIButtonType.Custom) as UIButton)
             }
             inputs[i].frame = CGRectMake(initial.x + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
-                                         final.y + buttonmargin, buttonsize, buttonsize)
+                                         final.y + 2 * buttonmargin, buttonsize, buttonsize)
             inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             inputs[i].tag = i
             self.view.addSubview(inputs[i])
         }
         
+        // draw puzzle frame
         puzzleframe.path = framepath
         puzzleframe.lineWidth = 2.0
         puzzleframe.strokeColor = UIColor.blackColor().CGColor
@@ -173,11 +174,12 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // print sudoku
     func printSudoku(puzzle: [[Int]]) {
-        // todo
         for i in 0...8 {
             for j in 0...8 {
                 if (puzzle[i][j] != 0) {
+                    // print already given numbers
                     let image: String = "melon" + String(puzzle[i][j])
                     numbers[9*i+j].setBackgroundImage(UIImage(named: image), forState: UIControlState.Normal)
                     numbers[9*i+j].backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
@@ -191,30 +193,21 @@ class GameViewController: UIViewController {
         }
     }
     
-    func checkSolved(puzzle: [[Int]]) {
-        // todo
-        if (puzzle == sudoku.solution) {
-            let alertController = UIAlertController(title: "Congratulations!",
-                                                    message: "You have beat " + diff + " difficulty puzzle!",
-                                                    preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
-    }
-    
+    // receive user inputs
     func userInput(sender: UIButton) {
-        // todo
+        // if user clicks the slot again, deactivate inputs
         if (currentButton == sender.tag) {
             deactInput()
             currentButton = -1
         }
+        // if user clicks the slot for the first time, activate inputs
         else {
             currentButton = sender.tag
             actInput()
         }
     }
     
+    // activate input buttons
     func actInput() {
         for i in 0...8 {
             let image: String = "melon" + String(i+1)
@@ -223,6 +216,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    // deactivate input buttons
     func deactInput() {
         for i in 0...8 {
             inputs[i].setBackgroundImage(nil, forState:UIControlState.Normal)
@@ -230,12 +224,25 @@ class GameViewController: UIViewController {
         }
     }
     
+    // add values to the puzzle as user inputs
     func changeValue(sender: UIButton) {
         sudoku.puzzle[currentButton / 9][currentButton % 9] = sender.tag + 1
         numbers[currentButton].setBackgroundImage(UIImage(named: "melon" + String(sender.tag + 1)), forState: UIControlState.Normal)
         deactInput()
         currentButton = -1
         checkSolved(sudoku.puzzle)
+    }
+    
+    // if the puzzle was solved, print congratulations message
+    func checkSolved(puzzle: [[Int]]) {
+        if (puzzle == sudoku.solution) {
+            let alertController = UIAlertController(title: "Congratulations!",
+                message: "You have beat " + diff + " difficulty puzzle!",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
 }
