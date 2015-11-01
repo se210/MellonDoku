@@ -3,7 +3,7 @@
 //  MellonDoku
 //
 //  Created by Gihyuk Ko on 10/23/15.
-//  Copyright © 2015 Gihyuk Ko. All rights reserved.
+//  Copyright © 2015 Gihyuk Ko and Se-Joon Chung. All rights reserved.
 //
 
 import UIKit

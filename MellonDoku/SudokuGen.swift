@@ -3,22 +3,27 @@
 //  MellonDoku
 //
 //  Created by Gihyuk Ko on 10/27/15.
-//  Copyright © 2015 Gihyuk Ko. All rights reserved.
+//  Copyright © 2015 Gihyuk Ko and Se-Joon Chung. All rights reserved.
 //
 
 import Foundation
 
 class SudokuGen {
+    // member variables
     var difficulty: String
     var puzzle: [[Int]] = [[0]]
     var solution: [[Int]] = [[0]]
     
+    // an initializer
     init(difficulty: String) {
         self.difficulty = difficulty
-        (self.puzzle, self.solution) = genSudoku(self.difficulty)
+        (self.puzzle, self.solution) = genSudoku(self.difficulty)   // generate a sudoku and its solution
     }
     
+    // a function which generates sudoku and corresponding solution
     func genSudoku(diff: String) -> (puzzle: [[Int]], solution:[[Int]]) {
+
+        // base seeds for each difficulty
         var easyPuzzle: [[Int]] = [[3,0,1,5,8,6,7,4,9],
                                    [9,7,5,3,4,0,1,0,6],
                                    [6,0,8,0,7,0,5,2,0],
@@ -46,28 +51,34 @@ class SudokuGen {
                                    [0,0,0,5,0,0,0,0,0],
                                    [4,0,9,3,0,0,8,5,0],
                                    [5,2,0,0,0,0,0,0,0]]
-
+        
+        // generate puzzle according to the difficulty
         switch (diff) {
+            
         case "Easy":
             randomizePuzzle(&easyPuzzle)
             var easySolution: [[Int]] = easyPuzzle
             solveSudoku(&easySolution)
             return (easyPuzzle, easySolution)
+            
         case "Medium":
             randomizePuzzle(&mediumPuzzle)
             var mediumSolution: [[Int]] = mediumPuzzle
             solveSudoku(&mediumSolution)
             return (mediumPuzzle, mediumSolution)
+            
         case "Hard":
             randomizePuzzle(&hardPuzzle)
             var hardSolution: [[Int]] = hardPuzzle
             solveSudoku(&hardSolution)
             return (hardPuzzle, hardSolution)
-        default:
+            
+        default:    // will not be called
             return ([[0]],[[0]])
         }
     }
     
+    // a function which checks whether it has a duplicate member in an array
     func checkArray(list: [Int], index: Int) -> Bool {
         for i in 0...8 {
             if (i != index) {
@@ -79,6 +90,7 @@ class SudokuGen {
         return true
     }
     
+    // check the puzzle if one can put a number in the position
     func isSafe(puzzle: [[Int]], position: (Int,Int), number: Int) -> Bool {
         
         var checker:[[Int]] = puzzle
@@ -103,6 +115,7 @@ class SudokuGen {
                checkArray(column, index: position.0)
     }
     
+    // find unassigned location for the puzzle
     func findUnassignedLocation(puzzle: [[Int]], inout row: Int, inout col: Int) -> Bool {
         for (row = 0; row < 9; row++) {
             for (col = 0; col < 9; col++) {
@@ -114,6 +127,7 @@ class SudokuGen {
         return false
     }
     
+    // solve sudoku using backtracking algorithm
     func solveSudoku(inout puzzle: [[Int]]) -> Bool {
         
         var row: Int = 0
@@ -135,16 +149,20 @@ class SudokuGen {
         return false
     }
     
+    // randomize puzzle by permutating rows and columns, exchanging symbols in the initial seed
     func randomizePuzzle(inout puzzle: [[Int]]) {
+        // randomizing parameters
         let rowperm: [Int] = [Int(arc4random_uniform(6)), Int(arc4random_uniform(6)), Int(arc4random_uniform(6))]
         let colperm: [Int] = [Int(arc4random_uniform(6)), Int(arc4random_uniform(6)), Int(arc4random_uniform(6))]
         let symcount: Int = Int(arc4random_uniform(4))
         var symperm: [(Int,Int)] = []
+        
         for i in 0...symcount {
             symperm.append((Int(arc4random_uniform(9)) + 1, Int(arc4random_uniform(9)) + 1))
         }
+        
         for i in 0...2 {
-            switch (rowperm[i]) {
+            switch (rowperm[i]) {   // 6 different permutations per each row set(in the same box)
             case 1:
                 permuteRow(&puzzle, rows: (3*i+1,3*i+2))
             case 2:
@@ -160,7 +178,7 @@ class SudokuGen {
             default:
                 break
             }
-            switch (colperm[i]) {
+            switch (colperm[i]) {   // 6 different permutations per each column set(in the same box)
             case 1:
                 permuteColumn(&puzzle, columns: (3*i+1,3*i+2))
             case 2:
@@ -177,17 +195,19 @@ class SudokuGen {
                 break
             }
         }
-        for item in symperm {
+        for item in symperm {   // symbol permutation
             permuteSymbol(&puzzle, numbers: item)
         }
     }
     
+    // permute two rows
     func permuteRow(inout puzzle: [[Int]], rows: (Int,Int)) {
         let temp: [Int] = puzzle[rows.0]
         puzzle[rows.0] = puzzle[rows.1]
         puzzle[rows.1] = temp
     }
     
+    // permute two columns
     func permuteColumn(inout puzzle: [[Int]], columns: (Int,Int)) {
         var temp: [Int] = []
         for i in 0...8 {
@@ -199,6 +219,7 @@ class SudokuGen {
         }
     }
     
+    // permute two symbols
     func permuteSymbol(inout puzzle: [[Int]], numbers: (Int,Int)) {
         var index: [(Int,Int)] = []
         for i in 0...8 {
