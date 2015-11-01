@@ -156,10 +156,24 @@
                     <view key="view" contentMode="scaleToFill" id="J85-f3-NDh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pYv-V5-6xR">
+                                <rect key="frame" x="89" y="497" width="143" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Instant Solve"/>
+                                <connections>
+                                    <action selector="instantSolve:" destination="lez-iP-Ozv" eventType="touchUpInside" id="ug6-2t-Kd7"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="i1b-eN-IOh"/>
+                    <connections>
+                        <outlet property="solveButton" destination="pYv-V5-6xR" id="VZZ-Pj-dFT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dgv-0d-FOk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

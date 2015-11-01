@@ -128,6 +128,8 @@ class GameViewController: UIViewController {
     let timeLabel = UILabel(frame: CGRectZero)
     let startTime = NSDate()
     
+    @IBOutlet weak var solveButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -216,10 +218,19 @@ class GameViewController: UIViewController {
         // print sudoku
         self.printSudoku(sudoku.puzzle)
         
+        // cheating button for debugging
+        solveButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.90)
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func instantSolve(sender: AnyObject) {
+        sudoku.puzzle = sudoku.solution
+        self.printSudoku(sudoku.puzzle)
+        checkSolved(sudoku.puzzle)
     }
     
     func updateTime() {
