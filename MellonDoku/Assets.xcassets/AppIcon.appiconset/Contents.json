@@ -35,6 +35,42 @@
       "idiom" : "iphone",
       "filename" : "MellonDoku_180x180w.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_29x29w.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_58x58w-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_40x40w.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_80x80w-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_76x76w.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "MellonDoku_152x152w.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
