@@ -303,8 +303,15 @@ class GameViewController: UIViewController {
     
     // add values to the puzzle as user inputs
     func changeValue(sender: UIButton) {
-        sudoku.puzzle[currentButton / 9][currentButton % 9] = sender.tag + 1
-        numbers[currentButton].setBackgroundImage(UIImage(named: "melon" + String(sender.tag + 1)), forState: UIControlState.Normal)
+        if (sudoku.puzzle[currentButton / 9][currentButton % 9] == sender.tag + 1) {
+            numbers[currentButton].setBackgroundImage(nil, forState: UIControlState.Normal)
+            sudoku.puzzle[currentButton / 9][currentButton % 9] = 0
+        }
+        else {
+            sudoku.puzzle[currentButton / 9][currentButton % 9] = sender.tag + 1
+            numbers[currentButton].setBackgroundImage(UIImage(named: "melon" + String(sender.tag + 1)),
+                                                      forState: UIControlState.Normal)
+        }
         deactInput()
         currentButton = -1
         checkSolved(sudoku.puzzle)
