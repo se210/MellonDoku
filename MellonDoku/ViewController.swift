@@ -182,7 +182,7 @@ class GameViewController: UIViewController {
             }
             inputs[i].frame = CGRectMake(initial.x + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
                                          final.y + 2 * buttonmargin, buttonsize, buttonsize)
-            inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+            //inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             inputs[i].tag = i
             self.view.addSubview(inputs[i])
         }
@@ -199,6 +199,8 @@ class GameViewController: UIViewController {
         
         // print sudoku
         self.printSudoku(sudoku.puzzle)
+        print(sudoku.puzzle)
+        print(sudoku.solution)
         
     }
     
@@ -245,6 +247,7 @@ class GameViewController: UIViewController {
             let image: String = "melon" + String(i+1)
             inputs[i].setBackgroundImage(UIImage(named: image), forState:UIControlState.Normal)
             inputs[i].addTarget(self, action: "changeValue:", forControlEvents: UIControlEvents.TouchUpInside)
+            inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         }
     }
     
@@ -253,6 +256,7 @@ class GameViewController: UIViewController {
         for i in 0...8 {
             inputs[i].setBackgroundImage(nil, forState:UIControlState.Normal)
             inputs[i].removeTarget(self, action: "changeValue:", forControlEvents: UIControlEvents.TouchUpInside)
+            inputs[i].backgroundColor = UIColor.clearColor()
         }
     }
     

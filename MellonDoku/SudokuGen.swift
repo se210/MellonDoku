@@ -10,13 +10,12 @@ import Foundation
 
 class SudokuGen {
     var difficulty: String
-    var puzzle: [[Int]]!
-    var solution: [[Int]]!
+    var puzzle: [[Int]] = [[0]]
+    var solution: [[Int]] = [[0]]
     
     init(difficulty: String) {
         self.difficulty = difficulty
-        self.puzzle = genSudoku(self.difficulty).puzzle
-        self.solution = genSudoku(self.difficulty).solution
+        (self.puzzle, self.solution) = genSudoku(self.difficulty)
     }
     
     func genSudoku(diff: String) -> (puzzle: [[Int]], solution:[[Int]]) {
