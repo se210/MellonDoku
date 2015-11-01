@@ -185,6 +185,7 @@ class GameViewController: UIViewController {
                 numbers[9*i+j].frame = CGRectMake(initial.x + buttonmargin + CGFloat(j) * (buttonsize + 2 * buttonmargin),
                                                   initial.y + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
                                                   buttonsize, buttonsize)
+                numbers[9*i+j].layer.cornerRadius = 7
                 self.view.addSubview(numbers[9*i+j])
             }
         }
@@ -196,6 +197,7 @@ class GameViewController: UIViewController {
             }
             inputs[i].frame = CGRectMake(initial.x + buttonmargin + CGFloat(i) * (buttonsize + 2 * buttonmargin),
                                          final.y + 2 * buttonmargin, buttonsize, buttonsize)
+            inputs[i].layer.cornerRadius = 7
             //inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             inputs[i].tag = i
             self.view.addSubview(inputs[i])
