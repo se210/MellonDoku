@@ -313,8 +313,9 @@ class GameViewController: UIViewController {
     // if the puzzle was solved, print congratulations message
     func checkSolved(puzzle: [[Int]]) {
         if (puzzle == sudoku.solution) {
+            timer.invalidate()
             let alertController = UIAlertController(title: "Congratulations!",
-                message: "You have beat " + diff + " difficulty puzzle!",
+                message: "You have beat " + diff + " difficulty puzzle!\n\(timeLabel.text!)",
                 preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             
