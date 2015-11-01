@@ -28,8 +28,6 @@ class StartScreenViewController: UIViewController {
 
 }
 
-var diff: String!
-
 // Game Setup View Controller Class
 class GameSetupViewController: UIViewController {
     
@@ -40,6 +38,7 @@ class GameSetupViewController: UIViewController {
     @IBOutlet weak var hardButton: UIButton!
     
     let screenBounds = UIScreen.mainScreen().bounds
+    var diff: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +64,51 @@ class GameSetupViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if (identifier == "difficultyToGame")
+        {
+            if (self.diff == nil)
+            {
+                diffString.text = "Difficulty not selected!"
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == nil)
+        {
+            return
+        }
+        
+        switch segue.identifier!
+        {
+            case "difficultyToGame":
+                if let gameViewController = segue.destinationViewController as? GameViewController
+                {
+                    gameViewController.diff = self.diff!;
+                }
+            default:
+            break
+        }
+
+    }
+    
     
     @IBAction func easyDifficulty(sender: AnyObject) {
-        diffString.text = "You selected EASY difficulty!"
+        diffString.text = "You selected EASY difficulty."
         diff = "Easy"
     }
     
     @IBAction func mediumDifficulty(sender: AnyObject) {
-        diffString.text = "You selected MEDIUM difficulty!"
+        diffString.text = "You selected MEDIUM difficulty."
         diff = "Medium"
     }
     
     @IBAction func hardDifficulty(sender: AnyObject) {
-        diffString.text = "You selected HARD difficulty!"
+        diffString.text = "You selected HARD difficulty."
         diff = "Hard"
     }
     
@@ -92,6 +123,7 @@ class GameViewController: UIViewController {
     var numbers: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton] // buttons for the sudoku
     var inputs: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]  // buttons for the user input
     var currentButton: Int = -1 // status indicator for the user input
+    var diff: String!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
