@@ -48,29 +48,26 @@ class SudokuGen {
                                    [0,0,0,5,0,0,0,0,0],
                                    [4,0,9,3,0,0,8,5,0],
                                    [5,2,0,0,0,0,0,0,0]]
-        let easySolution: [[Int]] = [[3,2,1,5,8,6,7,4,9],
-                                     [9,7,5,3,4,2,1,8,6],
-                                     [6,4,8,9,7,1,5,2,3],
-                                     [8,1,3,4,5,7,9,6,2],
-                                     [5,9,7,2,6,3,8,1,4],
-                                     [4,6,2,8,1,9,3,7,5],
-                                     [1,8,4,6,9,5,2,3,7],
-                                     [2,5,6,7,3,8,4,9,1],
-                                     [7,3,9,1,2,4,6,5,8]]
+        var easySolution: [[Int]] = easyPuzzle
+        var mediumSolution: [[Int]] = mediumPuzzle
+        var hardSolution: [[Int]] = hardPuzzle
         
+        solveSudoku(&easySolution)
+        solveSudoku(&mediumSolution)
+        solveSudoku(&hardSolution)
+
         switch (diff) {
         case "Easy":
             return (easyPuzzle, easySolution)
         case "Medium":
-            return (mediumPuzzle, solveSudoku(mediumPuzzle))
+            return (mediumPuzzle, mediumSolution)
         case "Hard":
-            return (hardPuzzle, solveSudoku(hardPuzzle))
+            return (hardPuzzle, hardSolution)
         default:
-            return (easyPuzzle, solveSudoku(easyPuzzle))
+            return (easyPuzzle, easySolution)
         }
     }
     
-    // a function which checks a number is in the row/column/box
     func checkArray(list: [Int], index: Int) -> Bool {
         for i in 0...8 {
             if (i != index) {
@@ -82,52 +79,60 @@ class SudokuGen {
         return true
     }
     
-    // a function which checks entire puzzle
-    func puzzleChecker(puzzle: [[Int]], position: (Int,Int)) -> Bool {
+    func isSafe(puzzle: [[Int]], position: (Int,Int), number: Int) -> Bool {
         
-        let row: [Int] = puzzle[position.0]
+        var checker:[[Int]] = puzzle
+        checker[position.0][position.1] = number
+        let row: [Int] = checker[position.0]
         var column: [Int] = []
         var box: [Int] = []
         let boxposition: (Int,Int) = ((position.0)/3,(position.1)/3)
         let boxindex: Int = (position.1) % 3 + (position.0) % 3 * 3
         
         for i in 0...8 {
-            column.append(puzzle[i][position.1])
+            column.append(checker[i][position.1])
         }
         for i in 0...2 {
             for j in 0...2 {
-                box.append(puzzle[boxposition.0+i][boxposition.1+j])
+                box.append(checker[3*(boxposition.0)+i][3*(boxposition.1)+j])
             }
         }
-        checkArray(box, index: boxindex)
-        checkArray(row, index: position.1)
-        checkArray(column, index: position.0)
         
-        if (checkArray(box, index: boxindex) &&
+        return checkArray(box, index: boxindex) &&
             checkArray(row, index: position.1) &&
-            checkArray(column, index: position.0)) {
-                return true
-        } else {
-            return false
-        }
+            checkArray(column, index: position.0)
     }
     
-    // backtrack algorithm to solve a given sudoku puzzle
-    func backTrack(puzzle: [[Int]], position: (Int,Int)) -> [[Int]] {
-        
-        var test: Int = 1
-        var modified: [[Int]] = puzzle
-        
-        if (modified[position.0][position.1] == 0) {
-            while (test <= 9) {
-                modified[position.0][position.1] = test
-                if (puzzleChecker(modified, position: position)) {
-                    return modified
+    func findUnassignedLocation(puzzle: [[Int]], inout row: Int, inout col: Int) -> Bool {
+        for (row = 0; row < 9; row++) {
+            for (col = 0; col < 9; col++) {
+                if (puzzle[row][col] == 0) {
+                    return true
                 }
-                test++
             }
         }
-        return puzzle
+        return false
+    }
+    
+    func solveSudoku(inout puzzle: [[Int]]) -> Bool {
+        
+        var row: Int = 0
+        var col: Int = 0
+        var test: Int = 0
+        
+        if (!findUnassignedLocation(puzzle, row: &row, col: &col)) {
+            return true
+        }
+        for (test = 1; test <= 9; test++) {
+            if (isSafe(puzzle, position: (row,col), number: test)) {
+                puzzle[row][col] = test
+                if (solveSudoku(&puzzle)) {
+                    return true
+                }
+                puzzle[row][col] = 0
+            }
+        }
+        return false
     }
     
     /*func makeSudoku(puzzle: [[Int]]) -> [[Int]] {
@@ -140,6 +145,7 @@ class SudokuGen {
         return nextpuzzle
     }*/
     
+    /*
     //print(makeSudoku(sudoku.puzzle))
     func solveSudoku(puzzle: [[Int]]) -> [[Int]] {
         var nextpuzzle: [[Int]] = puzzle
@@ -149,5 +155,5 @@ class SudokuGen {
             }
         }
         return nextpuzzle
-    }
+    }*/
 }
