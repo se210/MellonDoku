@@ -199,8 +199,6 @@ class GameViewController: UIViewController {
         
         // print sudoku
         self.printSudoku(sudoku.puzzle)
-        print(sudoku.puzzle)
-        print(sudoku.solution)
         
     }
     
