@@ -124,13 +124,27 @@ class GameViewController: UIViewController {
     var inputs: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]  // buttons for the user input
     var currentButton: Int = -1 // status indicator for the user input
     var diff: String!;
+    var timer = NSTimer()
+    let timeLabel = UILabel(frame: CGRectZero)
+    let startTime = NSDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // draw puzzle frame
         let screenBounds = UIScreen.mainScreen().bounds
-
+        
+        // display elapsed time
+        timeLabel.text = "Elapsed Time: 00:00 "
+        timeLabel.font = UIFont(name: "System", size: 20)
+        timeLabel.sizeToFit()
+        timeLabel.textAlignment = NSTextAlignment.Left
+        timeLabel.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.15)
+        let aSelector : Selector = "updateTime"
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        
+        self.view.addSubview(timeLabel)
+        
+        // draw puzzle frame
         let navibar = self.navigationController!.navigationBar.frame.size.height
         let framepath = CGPathCreateMutable()
         let puzzleframe = CAShapeLayer()
@@ -204,6 +218,33 @@ class GameViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func updateTime() {
+        let currentTime = NSDate()
+        
+        //Find the difference between current time and start time.
+        
+        var elapsedTime : NSTimeInterval = currentTime.timeIntervalSinceDate(startTime)
+        
+        //calculate the minutes in elapsed time.
+        
+        let minutes = UInt8(elapsedTime / 60.0)
+        
+        elapsedTime -= (NSTimeInterval(minutes) * 60)
+        
+        //calculate the seconds in elapsed time.
+        
+        let seconds = UInt8(elapsedTime)
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        
+        //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        
+        timeLabel.text = "Elapsed Time: \(strMinutes):\(strSeconds)"
     }
     
     // print sudoku
