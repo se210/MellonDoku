@@ -135,17 +135,6 @@ class GameViewController: UIViewController {
         
         let screenBounds = UIScreen.mainScreen().bounds
         
-        // display elapsed time
-        timeLabel.text = "Elapsed Time: 00:00 "
-        timeLabel.font = UIFont(name: "System", size: 20)
-        timeLabel.sizeToFit()
-        timeLabel.textAlignment = NSTextAlignment.Left
-        timeLabel.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.15)
-        let aSelector : Selector = "updateTime"
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
-        
-        self.view.addSubview(timeLabel)
-        
         // draw puzzle frame
         let navibar = self.navigationController!.navigationBar.frame.size.height
         let framepath = CGPathCreateMutable()
@@ -160,6 +149,17 @@ class GameViewController: UIViewController {
                        y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5 + puzzlesize/3)
         let divide2 = (x: CGRectGetMaxX(screenBounds) * 0.65,
                        y: 0.5 * navibar + (CGRectGetMaxY(screenBounds) - puzzlesize) * 0.5 + 2 * puzzlesize/3)
+        
+        // display elapsed time
+        timeLabel.text = "Elapsed Time: 00:00 "
+        timeLabel.font = UIFont(name: "System", size: 20)
+        timeLabel.sizeToFit()
+        timeLabel.textAlignment = NSTextAlignment.Left
+        timeLabel.center = CGPoint(x: CGRectGetMidX(screenBounds), y: (initial.y + navibar) * 0.5)
+        let aSelector : Selector = "updateTime"
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        
+        self.view.addSubview(timeLabel)
         
         CGPathMoveToPoint(framepath, nil, initial.x, initial.y)
         CGPathAddLineToPoint(framepath, nil, final.x, initial.y)
@@ -219,7 +219,7 @@ class GameViewController: UIViewController {
         self.printSudoku(sudoku.puzzle)
         
         // cheating button for debugging
-        solveButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: CGRectGetMaxY(screenBounds) * 0.90)
+        solveButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: (CGRectGetMaxY(screenBounds) + final.y) * 0.5)
         
     }
     
@@ -284,11 +284,16 @@ class GameViewController: UIViewController {
         // if user clicks the slot again, deactivate inputs
         if (currentButton == sender.tag) {
             deactInput()
+            numbers[currentButton].backgroundColor = UIColor.clearColor()
             currentButton = -1
         }
         // if user clicks the slot for the first time, activate inputs
         else {
+            if (currentButton != -1) {
+                numbers[currentButton].backgroundColor = UIColor.clearColor()
+            }
             currentButton = sender.tag
+            numbers[currentButton].backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.1)
             actInput()
         }
     }
@@ -297,7 +302,7 @@ class GameViewController: UIViewController {
     func actInput() {
         for i in 0...8 {
             let image: String = "melon" + String(i+1)
-            inputs[i].setBackgroundImage(UIImage(named: image), forState:UIControlState.Normal)
+            inputs[i].setBackgroundImage(UIImage(named: image), forState: UIControlState.Normal)
             inputs[i].addTarget(self, action: "changeValue:", forControlEvents: UIControlEvents.TouchUpInside)
             inputs[i].backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         }
@@ -316,10 +321,12 @@ class GameViewController: UIViewController {
     func changeValue(sender: UIButton) {
         if (sudoku.puzzle[currentButton / 9][currentButton % 9] == sender.tag + 1) {
             numbers[currentButton].setBackgroundImage(nil, forState: UIControlState.Normal)
+            numbers[currentButton].backgroundColor = UIColor.clearColor()
             sudoku.puzzle[currentButton / 9][currentButton % 9] = 0
         }
         else {
             sudoku.puzzle[currentButton / 9][currentButton % 9] = sender.tag + 1
+            numbers[currentButton].backgroundColor = UIColor.clearColor()
             numbers[currentButton].setBackgroundImage(UIImage(named: "melon" + String(sender.tag + 1)),
                                                       forState: UIControlState.Normal)
         }
