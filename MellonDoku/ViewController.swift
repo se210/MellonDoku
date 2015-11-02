@@ -123,10 +123,10 @@ class GameViewController: UIViewController {
     var numbers: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton] // buttons for the sudoku
     var inputs: [UIButton] = [UIButton(type: UIButtonType.Custom) as UIButton]  // buttons for the user input
     var currentButton: Int = -1 // status indicator for the user input
-    var diff: String!;
+    var diff: String!
     var timer = NSTimer()
     let timeLabel = UILabel(frame: CGRectZero)
-    let startTime = NSDate()
+    var startTime : NSDate!
     
     @IBOutlet weak var solveButton: UIButton!
     
@@ -221,6 +221,7 @@ class GameViewController: UIViewController {
         // cheating button for debugging
         solveButton.center = CGPoint(x: CGRectGetMidX(screenBounds), y: (CGRectGetMaxY(screenBounds) + final.y) * 0.5)
         
+        startTime = NSDate()
     }
     
     override func didReceiveMemoryWarning() {
